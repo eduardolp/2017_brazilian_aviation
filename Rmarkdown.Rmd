@@ -1,0 +1,35 @@
+---
+title: "Aviação Brasileira 2017"
+author: "Eduardo L. Pereira"
+date: "10 de abril de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Análise Exploratória de Dados
+
+Neste projeto será feita uma análise exploratória de dados relativos aos voos internacionais que partiram ou chegaram ao Brasil no ano de 2017. Os dados utilizados são disponibilizados no site da [ANAC](http://www.anac.gov.br/assuntos/dados-e-estatisticas/dados-estatisticos/dados-estatisticos).
+
+```{r read libraries, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(dplyr)
+```
+
+## Leitura dos dados
+
+Primeiro os dados brutos são salvos na variável df e, então, filtrados numa segunda variável, chamada filtered_df, onde estão as informações relativas ao voos internacionais.
+
+```{r read data}
+df <- read.csv('data/Consulta62017.csv', sep = ';', encoding = 'UTF-8')
+filtered_df <- filter(df, NATUREZA == 'Internacional')
+```
+
+## Comparação entre a quantidade de voos operados por companhias brasileiras e por companhias estrangeiras
+```{r company origin}
+ggplot(filtered_df, aes(EMPRESA..NACIONALIDADE.))+
+  geom_bar()
+```
+
